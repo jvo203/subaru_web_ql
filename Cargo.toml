@@ -4,3 +4,8 @@ version = "0.1.0"
 authors = ["jvo203 <chris.zapart@nao.ac.jp>"]
 
 [dependencies]
+iron = "*"
+staticfile = "*"
+router = "*"
+mount = "*"
+urlencoded = "*"
