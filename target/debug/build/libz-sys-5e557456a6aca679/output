@@ -1,0 +1,2 @@
+cargo:rustc-link-search=native=/usr/lib64
+cargo:rustc-link-lib=z
