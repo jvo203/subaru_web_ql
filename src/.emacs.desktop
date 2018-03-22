@@ -2,16 +2,16 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Tue Mar 20 17:17:19 2018
+;; Created Thu Mar 22 19:21:33 2018
 ;; Desktop file format version 208
 ;; Emacs version 25.3.1
 
 ;; Global section:
-(setq desktop-saved-frameset [frameset 1 (23216 50063 618054 86000) (desktop . "208") "chris@xeon" nil nil ((((font-backend xft x) (font . "-IPA -IPA’¥´’¥·’¥Ã’¥¯-normal-normal-normal-*-41-*-*-*-d-0-iso10646-1") (font-parameter) (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . left) (horizontal-scroll-bars) (foreground-color . "#2E3436") (background-color . "#EDEDED") (mouse-color . "#000000") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (scroll-bar-foreground . "#2e3436") (scroll-bar-background . "#e8e8e7") (menu-bar-lines . 1) (tool-bar-lines . 1) (title) (wait-for-wm . t) (tool-bar-position . top) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 17) (scroll-bar-height . 0) (alpha) (fullscreen . maximized) (display-type . color) (background-mode . light) (cursor-color . "#00BBFF") (sticky) (environment) (frameset--id . "93A7-F422-6010-3CC2") (frameset--mini t . t) (modeline . t) (minibuffer . t) (unsplittable) (icon-name) (display . ":0") (explicit-name) (visibility . t) (height . 31) (width . 120) (left . 0) (top . 1)) ((min-height . 4) (min-width . 20) (min-height-ignore . 2) (min-width-ignore . 8) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 168) (min-pixel-width . 420) (min-pixel-height-ignore . 84) (min-pixel-width-ignore . 168) (min-pixel-height-safe . 42) (min-pixel-width-safe . 84)) hc (pixel-width . 2558) (pixel-height . 1263) (total-width . 122) (total-height . 30) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 1277) (pixel-height . 1263) (total-width . 61) (total-height . 30) (normal-height . 1.0) (normal-width . 0.5) (buffer "main.rs" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 1 t nil 0 nil) (vscroll . 0) (dedicated) (point . 15836) (start . 15596))) (leaf (last . t) (pixel-width . 1281) (pixel-height . 1263) (total-width . 61) (total-height . 30) (normal-height . 1.0) (normal-width . 0.5) (buffer "main.rs" (selected) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 1 t nil 0 nil) (vscroll . 0) (dedicated) (point . 691) (start . 552)))))])
+(setq desktop-saved-frameset [frameset 1 (23219 33709 831195 222000) (desktop . "208") "chris@xeon" nil nil ((((font-backend xft x) (font . "-IPA -IPA’¥´’¥·’¥Ã’¥¯-normal-normal-normal-*-41-*-*-*-d-0-iso10646-1") (font-parameter) (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . left) (horizontal-scroll-bars) (foreground-color . "#2E3436") (background-color . "#EDEDED") (mouse-color . "#000000") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (scroll-bar-foreground . "#2e3436") (scroll-bar-background . "#e8e8e7") (menu-bar-lines . 1) (tool-bar-lines . 1) (title) (wait-for-wm . t) (tool-bar-position . top) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 17) (scroll-bar-height . 0) (alpha) (fullscreen . maximized) (display-type . color) (background-mode . light) (cursor-color . "#00BBFF") (sticky) (environment) (frameset--id . "93A7-F422-6010-3CC2") (frameset--mini t . t) (modeline . t) (minibuffer . t) (unsplittable) (icon-name) (display . ":0") (explicit-name) (visibility . t) (height . 31) (width . 120) (left . 0) (top . 1)) ((min-height . 4) (min-width . 10) (min-height-ignore . 2) (min-width-ignore . 4) (min-height-safe . 1) (min-width-safe . 2) (min-pixel-height . 168) (min-pixel-width . 210) (min-pixel-height-ignore . 84) (min-pixel-width-ignore . 84) (min-pixel-height-safe . 42) (min-pixel-width-safe . 42)) leaf (pixel-width . 2558) (pixel-height . 1263) (total-width . 122) (total-height . 30) (normal-height . 1.0) (normal-width . 1.0) (buffer "main.rs" (selected . t) (hscroll . 0) (fringes 8 8 nil) (margins nil) (scroll-bars nil 1 t nil 0 nil) (vscroll . 0) (dedicated) (point . 13898) (start . 12752))))])
 (setq desktop-missing-file-warning nil)
 (setq tags-file-name nil)
 (setq tags-table-list nil)
-(setq search-ring '("has_fi" "subaru_fi" "thread" "inde" "depth" "subaru_fi" "mime" "resp" "ver" "format!" "fmt!" "fitsc" "subaru_vo" "has_vo" "escape" "url"))
+(setq search-ring '("new" "subaru_vo" "subaru.current_pos = 1" "votable(" "new" "Arc" "let subaru = " "box" "let mut su" "subaru_vot" "subaru_fits" "subaru_vota" "insert" "execute_su" "has_fi" "subaru_fi"))
 (setq regexp-search-ring nil)
 (setq register-alist nil)
 (setq file-name-history nil)
@@ -22,10 +22,10 @@
   "main.rs"
   'rust-mode
   '(visual-line-mode)
-  15836
-  '(15945 nil)
+  13898
+  '(3158 nil)
   nil
   nil
   '((indent-tabs-mode) (buffer-file-coding-system . undecided-unix) (truncate-lines))
-  '((mark-ring (15909 9905 3905 3878 15909 15933 4446 12513 15933 15889 10048 9905 11543 15901 11371 15836))))
+  '((mark-ring (13451 1922 1901 5246 5246 2127 6893 1407 6924 85 60 13107 13107 13107 13238 13372))))
 

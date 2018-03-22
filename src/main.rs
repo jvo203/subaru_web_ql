@@ -15,10 +15,9 @@ use std::error::Error;
 use std::fs::File;
 use std::io::BufReader;
 
-use std::thread;
-use std::time::{Duration, SystemTime};
+use std::sync::Arc;
+use std::time::{/*Duration,*/ SystemTime};
 use std::collections::HashMap;
-//use std::sync::Mutex;
 use std::sync::RwLock;
 
 use std::path::Path;
@@ -77,17 +76,61 @@ struct SubaruDataset {
     file_size_pos: i32,
     file_path_pos: i32,
     file_url_pos: i32,
-    timestamp: SystemTime,
+    timestamp: RwLock<SystemTime>,
     has_votable: bool,
-    has_fits: bool,
-    //lock: Mutex<()>,    
+    has_fits: bool,        
     //fits FITS	 
 }
 
+impl SubaruDataset {
+    fn new(data_id: String, votable: &String) -> SubaruDataset {
+        let mut subaru = SubaruDataset {
+            data_id: data_id,
+            process_id: String::from(""),
+            title: String::from(""),
+            date_obs: String::from(""),
+            objects: String::from(""),
+            band_name: String::from(""),
+            band_ref: String::from(""),
+            band_hi: String::from(""),
+            band_lo: String::from(""),
+            band_unit: String::from(""),
+            ra: String::from(""),
+            dec: String::from(""),
+            file_size: 0,
+            file_path: String::from(""),
+            file_url: String::from(""),
+            current_pos: -1,
+            data_id_pos: -1,
+            process_id_pos: -1,
+            title_pos: -1,
+            date_obs_pos: -1,
+            objects_pos: -1,
+            band_name_pos: -1,
+            band_ref_pos: -1,
+            band_hi_pos: -1,
+            band_lo_pos: -1,
+            band_unit_pos: -1,
+            ra_pos: -1,
+            dec_pos: -1,
+            file_size_pos: -1,
+            file_path_pos: -1,
+            file_url_pos: -1,
+            timestamp: RwLock::new(SystemTime::now()),
+            has_votable: false,
+            has_fits: false,           
+        } ;
+
+        subaru_votable(&mut subaru, votable);
+        
+        subaru
+    }
+    
+}
+
 lazy_static! {
-    static ref HASHMAP: RwLock<HashMap<String, SubaruDataset>> = {
-        let m = HashMap::new();        
-        RwLock::new(m)
+    static ref HASHMAP: RwLock<HashMap<String, Arc<RwLock<SubaruDataset>>>> = {
+        RwLock::new(HashMap::new())
     };
 }
 
@@ -371,54 +414,19 @@ has_votable: false,
 
 fn execute_subaru(data_id: &String, votable: &String) -> IronResult<Response> {    
     println!("dataId: {}", data_id);
-    println!("votable: {}", votable);
+    println!("votable: {}", votable);    
     
     let mut datasets = HASHMAP.write().unwrap();    
-    
-    let subaru = datasets.entry(data_id.clone()).or_insert(SubaruDataset {
-        data_id: data_id.clone(),
-        process_id: String::from(""),
-        title: String::from(""),
-        date_obs: String::from(""),
-        objects: String::from(""),
-        band_name: String::from(""),
-        band_ref: String::from(""),
-        band_hi: String::from(""),
-        band_lo: String::from(""),
-        band_unit: String::from(""),
-        ra: String::from(""),
-        dec: String::from(""),
-        file_size: 0,
-        file_path: String::from(""),
-        file_url: String::from(""),
-        current_pos: -1,
-        data_id_pos: -1,
-        process_id_pos: -1,
-        title_pos: -1,
-        date_obs_pos: -1,
-        objects_pos: -1,
-        band_name_pos: -1,
-        band_ref_pos: -1,
-        band_hi_pos: -1,
-        band_lo_pos: -1,
-        band_unit_pos: -1,
-        ra_pos: -1,
-        dec_pos: -1,
-        file_size_pos: -1,
-        file_path_pos: -1,
-        file_url_pos: -1,
-        timestamp: SystemTime::now(),
-        has_votable: false,
-        has_fits: false,
-        //lock: Mutex::new(()),
-    });
+    let mut subaru = SubaruDataset::new(data_id.clone(), votable) ;
+    let mut subaru = datasets.entry(data_id.clone()).or_insert(Arc::new(RwLock::new(subaru))).write().unwrap();
+    let mut subaru = &*subaru;
     
     //let _guard = subaru.lock.lock().unwrap();
-    subaru.timestamp = SystemTime::now() ;
+    *subaru.timestamp.write().unwrap() = SystemTime::now() ;
 
-    if !subaru.has_votable {
-        subaru_votable(subaru, votable);
-    }        
+    /*if !subaru.has_votable {
+        subaru_votable(&mut subaru, votable);
+    }*/       
     
     println!("subaru: {:?}", subaru) ;
 
@@ -454,7 +462,7 @@ function resize(){mainRenderer();}
             subaru_fits(subaru);
         });*/
 
-        subaru_fits(subaru);
+        //subaru_fits(&mut subaru);
     }
 
     let content_type = Header(ContentType(Mime(TopLevel::Text, SubLevel::Html, vec![])));
