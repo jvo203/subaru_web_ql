@@ -42,6 +42,36 @@ static VOTABLESERVER: &'static str = "jvox.vo.nao.ac.jp";
 static VOTABLECACHE: &'static str = "VOTABLECACHE";
 static FITSCACHE: &'static str = "FITSCACHE";
 
+static NBINS: i32 = 1024;
+
+#[derive(Debug)]
+struct FITS {
+        bitpix: i32,
+        naxis: i32,
+        width: i32,
+        height: i32,
+        data: Vec<f32>,
+        ignrval: f32,
+        crval1: f32,
+        cdelt1: f32,
+        crpix1: f32,
+        crval2: f32,
+        cdelt2: f32,
+        crpix2: f32,
+        cd1_1: f32,
+        cd1_2: f32,
+        cd2_1: f32,
+        cd2_2: f32,
+        min: f32,
+        max: f32,
+        hist: Vec<i32>,
+        median: f32,
+        mad: f32,
+        black: f32,
+        sensitivity: f32,
+}
+
+
 #[derive(Debug)]
 struct SubaruDataset {	
     data_id: String,
@@ -77,7 +107,8 @@ struct SubaruDataset {
     file_url_pos: i32,
     timestamp: RwLock<SystemTime>,
     has_votable: bool,
-    has_fits: bool,        
+    has_fits: bool,
+    //add AtomicInt32 session counter
     //fits FITS	 (should be held in a separate hashmap)
 }
 
@@ -131,6 +162,12 @@ impl SubaruDataset {
 
 lazy_static! {
     static ref HASHMAP: RwLock<HashMap<String, SubaruDataset>> = {
+        RwLock::new(HashMap::new())
+    };
+}
+
+lazy_static! {
+    static ref HASHMAP_FITS: RwLock<HashMap<String, FITS>> = {
         RwLock::new(HashMap::new())
     };
 }
