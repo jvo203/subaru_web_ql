@@ -7,3 +7,6 @@ The purpose of this project is to discover pitfalls and limits of Rust when used
 
 After a while the first impression of Rust is very very bad! In the quest for "safety" it seems to be banning too many things that come handy in the hands of a *careful* programmer. Blanket bans for the sake of safety only make life difficult for a low-level C/C++/VHDL programmer more used to total control over all aspects of the code. Blanket bans will produce "safe" and reliable code but so will a very *careful* C/C++ programmer.
 
+####
+The second impression: rust can often be very frustrating but once it works, it works (forever) ...
+
